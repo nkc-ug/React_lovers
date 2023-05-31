@@ -1,19 +1,19 @@
-import * as React from "react";
+import * as React from 'react';
 //上のバー
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Grid } from "@mui/material";
-import { useState } from "react";
-import TextField from "@mui/material/TextField";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Grid } from '@mui/material';
+import { useState } from 'react';
+import TextField from '@mui/material/TextField';
 
 function App() {
   const [isEditing, setIsEditing] = useState(false);
-  const [first, setfirst] = useState("");
+  const [first, setfirst] = useState('');
 
   const AddButtone = () => {
     const handleClick = () => {
@@ -41,16 +41,11 @@ function App() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-            >
+            <Grid container direction="row" justifyContent="space-between" alignItems="center">
               <Grid item xs="auto">
                 <AddButtone />
               </Grid>
-              <Grid item xs sx={{ textAlign: "center" }}>
+              <Grid item xs sx={{ textAlign: 'center' }}>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                   ToDoRist
                 </Typography>
@@ -67,7 +62,7 @@ function App() {
           <Box
             component="form"
             sx={{
-              bgcolor: "background.paper",
+              bgcolor: 'background.paper',
               boxShadow: 1,
               borderRadius: 2,
               p: 4,
@@ -76,34 +71,17 @@ function App() {
           >
             <Grid container spacing={2}>
               <Grid xs={12}>
-                <TextField
-                  id="outlined-basic"
-                  value={first}
-                  label="RistName"
-                  variant="outlined"
-                />
+                <TextField id="outlined-basic" value={first} label="RistName" variant="outlined" />
               </Grid>
 
               <Grid xs={4}>
-                <TextField
-                  id="standard-basic"
-                  label="NextTask"
-                  variant="standard"
-                />
+                <TextField id="standard-basic" label="NextTask" variant="standard" />
               </Grid>
               <Grid xs={4}>
-                <TextField
-                  id="standard-basic"
-                  label="NextTask"
-                  variant="standard"
-                />
+                <TextField id="standard-basic" label="NextTask" variant="standard" />
               </Grid>
               <Grid xs={4}>
-                <TextField
-                  id="standard-basic"
-                  label="NextTask"
-                  variant="standard"
-                />
+                <TextField id="standard-basic" label="NextTask" variant="standard" />
               </Grid>
             </Grid>
             <Grid container spacing={0}>
@@ -114,7 +92,7 @@ function App() {
             </Grid>
           </Box>
         ) : (
-          ""
+          ''
         )}
       </div>
     </div>
