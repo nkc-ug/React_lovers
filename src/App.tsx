@@ -13,7 +13,10 @@ import TextField from '@mui/material/TextField';
 
 function App() {
   const [isEditing, setIsEditing] = useState(false);
-  const [first, setfirst] = useState('');
+  const [first, setfirst] = useState<String>('');
+  const [second, setsecond] = useState<String>('');
+  const [third, setthird] = useState<String>('');
+  const [fourth, setfourth] = useState<String>('');
 
   const AddButtone = () => {
     const handleClick = () => {
@@ -71,23 +74,62 @@ function App() {
           >
             <Grid container spacing={2}>
               <Grid xs={12}>
-                <TextField id="outlined-basic" value={first} label="RistName" variant="outlined" />
+                <TextField
+                  id="outlined-basic"
+                  value={first}
+                  label="RistName"
+                  variant="outlined"
+                  onChange={(e) => {
+                    setfirst(e.target.value);
+                  }}
+                />
               </Grid>
 
               <Grid xs={4}>
-                <TextField id="standard-basic" label="NextTask" variant="standard" />
+                <TextField
+                  id="standard-basic"
+                  label="NextTask"
+                  variant="standard"
+                  value={second}
+                  onChange={(e) => {
+                    setsecond(e.target.value);
+                  }}
+                />
               </Grid>
               <Grid xs={4}>
-                <TextField id="standard-basic" label="NextTask" variant="standard" />
+                <TextField
+                  id="standard-basic"
+                  label="NextTask"
+                  variant="standard"
+                  value={third}
+                  onChange={(e) => {
+                    setthird(e.target.value);
+                  }}
+                />
               </Grid>
               <Grid xs={4}>
-                <TextField id="standard-basic" label="NextTask" variant="standard" />
+                <TextField
+                  id="standard-basic"
+                  label="NextTask"
+                  variant="standard"
+                  value={fourth}
+                  onChange={(e) => {
+                    setfourth(e.target.value);
+                  }}
+                />
               </Grid>
             </Grid>
             <Grid container spacing={0}>
               <Grid xs={10}></Grid>
               <Grid xs={2}>
-                <Button variant="contained">completion</Button>
+                <Button
+                  variant="contained"
+                  onClick={() => {
+                    console.log(first, second, third, fourth);
+                  }}
+                >
+                  completion
+                </Button>
               </Grid>
             </Grid>
           </Box>
