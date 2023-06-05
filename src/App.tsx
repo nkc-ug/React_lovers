@@ -1,27 +1,44 @@
-import * as React from 'react';
-//上のバー
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Grid } from '@mui/material';
-import { useState } from 'react';
-import TextField from '@mui/material/TextField';
+import React, { useState } from 'react';
+import { Box, Typography, Grid, Button, TextField, AppBar, Toolbar } from '@mui/material';
+
+interface BoxData {
+  id: number;
+  first: string;
+  second: string;
+  third: string;
+  fourth: string;
+}
 
 function App() {
   const [isEditing, setIsEditing] = useState(false);
-  const [first, setfirst] = useState<String>('');
-  const [second, setsecond] = useState<String>('');
-  const [third, setthird] = useState<String>('');
-  const [fourth, setfourth] = useState<String>('');
+  const [first, setFirst] = useState('');
+  const [second, setSecond] = useState('');
+  const [third, setThird] = useState('');
+  const [fourth, setFourth] = useState('');
+  const [boxes, setBoxes] = useState<BoxData[]>([]);
 
-  const AddButtone = () => {
+  const handleCompletion = () => {
+    const newBox: BoxData = {
+      id: boxes.length + 1,
+      first,
+      second,
+      third,
+      fourth,
+    };
+
+    setBoxes((prevBoxes) => [...prevBoxes, newBox]);
+    setIsEditing(false);
+    setFirst('');
+    setSecond('');
+    setThird('');
+    setFourth('');
+  };
+
+  const AddButton = () => {
     const handleClick = () => {
       setIsEditing(true);
     };
+
     const stopEditingHandler = () => {
       setIsEditing(false);
     };
@@ -29,12 +46,12 @@ function App() {
     return isEditing ? (
       <div>
         <Button color="inherit" onClick={stopEditingHandler}>
-          Can
+          Cancel
         </Button>
       </div>
     ) : (
       <Button color="inherit" onClick={handleClick}>
-        add
+        Add
       </Button>
     );
   };
@@ -46,7 +63,7 @@ function App() {
           <Toolbar>
             <Grid container direction="row" justifyContent="space-between" alignItems="center">
               <Grid item xs="auto">
-                <AddButtone />
+                <AddButton />
               </Grid>
               <Grid item xs sx={{ textAlign: 'center' }}>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -54,7 +71,7 @@ function App() {
                 </Typography>
               </Grid>
               <Grid item xs="auto">
-                <Button color="inherit">del</Button>
+                <Button color="inherit">Delete</Button>
               </Grid>
             </Grid>
           </Toolbar>
@@ -80,11 +97,10 @@ function App() {
                   label="RistName"
                   variant="outlined"
                   onChange={(e) => {
-                    setfirst(e.target.value);
+                    setFirst(e.target.value);
                   }}
                 />
               </Grid>
-
               <Grid xs={4}>
                 <TextField
                   id="standard-basic"
@@ -92,7 +108,7 @@ function App() {
                   variant="standard"
                   value={second}
                   onChange={(e) => {
-                    setsecond(e.target.value);
+                    setSecond(e.target.value);
                   }}
                 />
               </Grid>
@@ -103,7 +119,7 @@ function App() {
                   variant="standard"
                   value={third}
                   onChange={(e) => {
-                    setthird(e.target.value);
+                    setThird(e.target.value);
                   }}
                 />
               </Grid>
@@ -114,7 +130,7 @@ function App() {
                   variant="standard"
                   value={fourth}
                   onChange={(e) => {
-                    setfourth(e.target.value);
+                    setFourth(e.target.value);
                   }}
                 />
               </Grid>
@@ -122,20 +138,42 @@ function App() {
             <Grid container spacing={0}>
               <Grid xs={10}></Grid>
               <Grid xs={2}>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    console.log(first, second, third, fourth);
-                  }}
-                >
-                  completion
-                </Button>
+                <Button variant="contained" onClick={handleCompletion}>
+                  Completion
+                </Button>{' '}
               </Grid>
             </Grid>
           </Box>
         ) : (
           ''
         )}
+      </div>
+      <div>
+        {boxes.map((box) => (
+          <Box
+            key={box.id}
+            sx={{
+              bgcolor: 'background.paper',
+              boxShadow: 1,
+              borderRadius: 2,
+              p: 2,
+              mt: 4,
+            }}
+          >
+            <Typography variant="body1" component="div">
+              {box.first}
+            </Typography>
+            <Typography variant="body1" component="div">
+              {box.second}
+            </Typography>
+            <Typography variant="body1" component="div">
+              {box.third}
+            </Typography>
+            <Typography variant="body1" component="div">
+              {box.fourth}
+            </Typography>
+          </Box>
+        ))}
       </div>
     </div>
   );
