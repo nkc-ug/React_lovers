@@ -110,7 +110,7 @@ export const App = () => {
         onChange={(e) => handleSort(e.target.value as Filter)}
       >
         <option value="all">すべてのタスク</option>
-        <option value="chacked">完了したラスク</option>
+        <option value="chacked">完了したタスク</option>
         <option value="unchecked">現在のタスク</option>
         <option value="removed">ゴミ箱</option>
       </select>
@@ -151,7 +151,7 @@ export const App = () => {
                 onChange={(e) => handleEdit(todo.id, e.target.value)}
               />
               <button onClick={() => handleRemove(todo.id, !todo.removed)}>
-                {todo.removed ? 'Ctrl + Z' : 'でれて'}
+                {todo.removed ? '復元' : '削除'}
               </button>
             </li>
           );
