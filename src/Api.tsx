@@ -37,6 +37,19 @@ export const Api: FC<Props> = (props) => {
           console.error(error);
         }
       );
+
+    //可愛いやり方
+    // const callFetch = async () => {
+    //   const res = await fetch(url);
+    //   const result = await res.json();
+    //   console.log('API success:', result);
+
+    //   if (result.items && result.items.length !== 0) {
+    //     const firstItem = result.items[0];
+    //     setVideoId(firstItem.id.videoId);
+    //   }
+    // };
+    // callFetch();
   }, [props.searchWord]);
 
   return (
