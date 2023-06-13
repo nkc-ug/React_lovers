@@ -1,7 +1,8 @@
-export const App = () => {
+export default function App(){
   return (
     <div className="App">
-      <p>Youtube APIのテストです</p>
+      <p>タイトル <input title="myInput" />
+      </p>
     </div>
   );
 }

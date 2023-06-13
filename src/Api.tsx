@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
-
+import title from "./App.tsx";
 const YOUTUBE_SERACH_API_URI = "https://www.googleapis.com/youtube/v3/search?";
 const API_KEY = "AIzaSyDTCQ6lNbEM0JPm83EAA86slppwCVltVQY";
 
 export const Api = () => {
   const [videoId, setVideoId] = useState("");
-
   useEffect(() => {
     // クエリ文字列を定義する
     const params = {
       key: API_KEY,
-      q: "ヒカキン", // 検索キーワード
+      q:  title, // 検索キーワード
       type: "video", // video,channel,playlistから選択できる
-      maxResults: "1", // 結果の最大数
-      order: "viewCount", // 結果の並び順を再生回数の多い順に
+      maxResults: "1",
+      order: "viewCount", 
     };
+
     const queryParams = new URLSearchParams(params);
 
     // APIをコールする
