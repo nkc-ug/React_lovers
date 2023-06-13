@@ -1,7 +1,14 @@
-export default function App(){
+import { FC, useState } from 'react';
+import { TitleCon } from './TitleCon';
+import Api from './Api';
+
+export const App: FC = () => {
+  const [searchWord, setSearchWord] = useState('');
+  
   return (
-    <div className="App">
-      <p>タイトル </p>
-    </div>
+    <>
+      <TitleCon searchWord={searchWord} setSearchWord={setSearchWord} />
+      <Api searchWord={searchWord} />
+    </>
   );
-}
+};
