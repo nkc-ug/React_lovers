@@ -13,15 +13,13 @@ export const Api: FC<Props> = (props) => {
     // クエリ文字列を定義する
     const params = {
       key: API_KEY,
-      q: "ヒカキン",//props.searchWord // 検索キーワード
+      q: props.searchWord, // 検索キーワード
       type: 'video', // video,channel,playlistから選択できる
       maxResults: '1',
       order: 'viewCount',
     };
 
     const queryParams = new URLSearchParams(params);
-    //const url = `${YOUTUBE_SEARCH_API_URI}?${queryParams}`;
-
     // APIをコールする
     fetch(YOUTUBE_SEARCH_API_URI + queryParams)
       .then((res) => res.json())
