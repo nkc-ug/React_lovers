@@ -10,15 +10,15 @@ type Props = {
   offClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
-const AddButton: FC<Props> = (props) => {
-  return props.Value1 ? (
+const AddButton: FC<Props> = ({ Value1, onClick, offClick }) => {
+  return Value1 ? (
     <div>
-      <IconButton color="inherit" onClick={props.offClick}>
+      <IconButton color="inherit" onClick={offClick}>
         <CloseIcon />
       </IconButton>
     </div>
   ) : (
-    <IconButton color="inherit" onClick={props.onClick}>
+    <IconButton color="inherit" onClick={onClick}>
       <AddIcon />
     </IconButton>
   );
