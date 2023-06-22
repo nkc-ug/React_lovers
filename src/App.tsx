@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Box, Typography, Grid, Button, TextField, AppBar, Toolbar } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
-import AddIcon from '@mui/icons-material/Add';
-import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddButton from './AddButton';
+import DelButton from './DelButton';
 
 function App() {
   const [isEditing, setIsEditing] = useState(false);
@@ -40,47 +40,18 @@ function App() {
     setFourth('');
   };
   //追加と削除ボタンの管理
-  const AddButton = () => {
-    const handleClick = () => {
-      setIsEditing(true);
-    };
-
-    const stopEditingHandler = () => {
-      setIsEditing(false);
-    };
-
-    return isEditing ? (
-      <div>
-        <IconButton color="inherit" onClick={stopEditingHandler}>
-          <CloseIcon />
-        </IconButton>
-      </div>
-    ) : (
-      <IconButton color="inherit" onClick={handleClick}>
-        <AddIcon />
-      </IconButton>
-    );
+  const AddClick = () => {
+    setIsEditing(true);
   };
-  const DelButton = () => {
-    const handleClick = () => {
-      setIsDel(true);
-    };
+  const CloseAddHandler = () => {
+    setIsEditing(false);
+  };
 
-    const stopEditingHandler = () => {
-      setIsDel(false);
-    };
-
-    return isDel ? (
-      <div>
-        <IconButton color="inherit" onClick={stopEditingHandler}>
-          <CloseIcon />
-        </IconButton>
-      </div>
-    ) : (
-      <IconButton color="inherit" onClick={handleClick}>
-        <DeleteIcon />
-      </IconButton>
-    );
+  const DeleteClick = () => {
+    setIsDel(true);
+  };
+  const CloseDeleteHandler = () => {
+    setIsDel(false);
   };
   //デリートをおすと配列内の要素を空にする
   const handleDelete = (id: number) => {
@@ -94,7 +65,7 @@ function App() {
           <Toolbar>
             <Grid container direction="row" justifyContent="space-between" alignItems="center">
               <Grid item xs="auto">
-                <AddButton />
+                <AddButton Value1={isEditing} offClick={CloseAddHandler} onClick={AddClick} />
               </Grid>
               <Grid item xs sx={{ textAlign: 'center' }}>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -102,7 +73,7 @@ function App() {
                 </Typography>
               </Grid>
               <Grid item xs="auto">
-                <DelButton />
+                <DelButton Value2={isDel} offClick={CloseDeleteHandler} onClick={DeleteClick} />
               </Grid>
             </Grid>
           </Toolbar>
@@ -174,7 +145,7 @@ function App() {
               <Grid xs={2}>
                 <Button variant="contained" onClick={handleCompletion}>
                   Completion
-                </Button>{' '}
+                </Button>
               </Grid>
             </Grid>
           </Box>
