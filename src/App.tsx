@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Button, TextField, AppBar, Toolbar } from '@mui/material';
+import { Box, Typography, Grid, AppBar, Toolbar } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
-import AddIcon from '@mui/icons-material/Add';
-import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddButton from './AddButton';
+import DelButton from './DelButton';
+import { Form } from './Form';
 
 function App() {
   const [isEditing, setIsEditing] = useState(false);
@@ -40,47 +41,18 @@ function App() {
     setFourth('');
   };
   //追加と削除ボタンの管理
-  const AddButton = () => {
-    const handleClick = () => {
-      setIsEditing(true);
-    };
-
-    const stopEditingHandler = () => {
-      setIsEditing(false);
-    };
-
-    return isEditing ? (
-      <div>
-        <IconButton color="inherit" onClick={stopEditingHandler}>
-          <CloseIcon />
-        </IconButton>
-      </div>
-    ) : (
-      <IconButton color="inherit" onClick={handleClick}>
-        <AddIcon />
-      </IconButton>
-    );
+  const AddClick = () => {
+    setIsEditing(true);
   };
-  const DelButton = () => {
-    const handleClick = () => {
-      setIsDel(true);
-    };
+  const CloseAddHandler = () => {
+    setIsEditing(false);
+  };
 
-    const stopEditingHandler = () => {
-      setIsDel(false);
-    };
-
-    return isDel ? (
-      <div>
-        <IconButton color="inherit" onClick={stopEditingHandler}>
-          <CloseIcon />
-        </IconButton>
-      </div>
-    ) : (
-      <IconButton color="inherit" onClick={handleClick}>
-        <DeleteIcon />
-      </IconButton>
-    );
+  const DeleteClick = () => {
+    setIsDel(true);
+  };
+  const CloseDeleteHandler = () => {
+    setIsDel(false);
   };
   //デリートをおすと配列内の要素を空にする
   const handleDelete = (id: number) => {
@@ -94,7 +66,7 @@ function App() {
           <Toolbar>
             <Grid container direction="row" justifyContent="space-between" alignItems="center">
               <Grid item xs="auto">
-                <AddButton />
+                <AddButton Value1={isEditing} offClick={CloseAddHandler} onClick={AddClick} />
               </Grid>
               <Grid item xs sx={{ textAlign: 'center' }}>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -102,7 +74,7 @@ function App() {
                 </Typography>
               </Grid>
               <Grid item xs="auto">
-                <DelButton />
+                <DelButton Value2={isDel} offClick={CloseDeleteHandler} onClick={DeleteClick} />
               </Grid>
             </Grid>
           </Toolbar>
@@ -111,77 +83,18 @@ function App() {
       {
         //入力フォーム
       }
-      <div>
-        {isEditing ? (
-          <Box
-            component="form"
-            sx={{
-              bgcolor: 'background.paper',
-              boxShadow: 1,
-              borderRadius: 2,
-              p: 4,
-              minWidth: 100,
-            }}
-          >
-            <Grid container spacing={2}>
-              <Grid xs={12}>
-                <TextField
-                  id="outlined-basic"
-                  value={first}
-                  label="RistName"
-                  variant="outlined"
-                  onChange={(e) => {
-                    setFirst(e.target.value);
-                  }}
-                />
-              </Grid>
-              <Grid xs={4}>
-                <TextField
-                  id="standard-basic"
-                  label="NextTask"
-                  variant="standard"
-                  value={second}
-                  onChange={(e) => {
-                    setSecond(e.target.value);
-                  }}
-                />
-              </Grid>
-              <Grid xs={4}>
-                <TextField
-                  id="standard-basic"
-                  label="NextTask"
-                  variant="standard"
-                  value={third}
-                  onChange={(e) => {
-                    setThird(e.target.value);
-                  }}
-                />
-              </Grid>
-              <Grid xs={4}>
-                <TextField
-                  id="standard-basic"
-                  label="NextTask"
-                  variant="standard"
-                  value={fourth}
-                  onChange={(e) => {
-                    setFourth(e.target.value);
-                  }}
-                />
-              </Grid>
-            </Grid>
-            <Grid container spacing={0}>
-              <Grid xs={10}></Grid>
-              <Grid xs={2}>
-                <Button variant="contained" onClick={handleCompletion}>
-                  Completion
-                </Button>{' '}
-              </Grid>
-            </Grid>
-          </Box>
-        ) : (
-          ''
-        )}
-      </div>
+      <Form
+        Value3={isEditing}
+        first={first}
+        second={second}
+        third={third}
+        fourth={fourth}
+        handleCompletion={handleCompletion}
+        setFirst={setFirst}
+        setSecond={setSecond}
+        setThird={setThird}
+        setFourth={setFourth}
+      />
       {
         //生成されたリスト
       }
@@ -214,9 +127,7 @@ function App() {
                           {box.first}
                         </Typography>
                       </Box>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                   </Grid>
                   <Grid item>
                     {box.second ? (
@@ -232,9 +143,7 @@ function App() {
                           {box.second}
                         </Typography>
                       </Box>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                   </Grid>
                   <Grid item>
                     {box.third ? (
@@ -250,9 +159,7 @@ function App() {
                           {box.third}
                         </Typography>
                       </Box>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                   </Grid>
                   <Grid item>
                     {box.fourth ? (
@@ -268,9 +175,7 @@ function App() {
                           {box.fourth}
                         </Typography>
                       </Box>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                   </Grid>
                 </Grid>
                 <Grid container justifyContent="flex-end" alignItems="center">
@@ -278,9 +183,7 @@ function App() {
                     <IconButton color="error" onClick={() => handleDelete(box.id)}>
                       <DeleteIcon />
                     </IconButton>
-                  ) : (
-                    ''
-                  )}
+                  ) : null}
                 </Grid>
               </Box>
             </Grid>
