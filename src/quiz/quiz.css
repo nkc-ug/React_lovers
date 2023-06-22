@@ -1,0 +1,19 @@
+.quiz {
+  text-align: center;
+}
+
+.answer {
+  margin: 15px;
+  font-size: 20px;
+}
+
+.table {
+  margin: auto;
+  width: 200px;
+  border: 1px solid #333;
+  padding: 10px;
+}
+
+ol {
+  text-align: left;
+}
