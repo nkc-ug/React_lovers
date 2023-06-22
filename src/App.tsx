@@ -127,9 +127,7 @@ function App() {
                           {box.first}
                         </Typography>
                       </Box>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                   </Grid>
                   <Grid item>
                     {box.second ? (
@@ -145,9 +143,7 @@ function App() {
                           {box.second}
                         </Typography>
                       </Box>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                   </Grid>
                   <Grid item>
                     {box.third ? (
@@ -163,9 +159,7 @@ function App() {
                           {box.third}
                         </Typography>
                       </Box>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                   </Grid>
                   <Grid item>
                     {box.fourth ? (
@@ -181,9 +175,7 @@ function App() {
                           {box.fourth}
                         </Typography>
                       </Box>
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                   </Grid>
                 </Grid>
                 <Grid container justifyContent="flex-end" alignItems="center">
@@ -191,9 +183,7 @@ function App() {
                     <IconButton color="error" onClick={() => handleDelete(box.id)}>
                       <DeleteIcon />
                     </IconButton>
-                  ) : (
-                    ''
-                  )}
+                  ) : null}
                 </Grid>
               </Box>
             </Grid>
