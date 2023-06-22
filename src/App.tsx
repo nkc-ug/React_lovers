@@ -70,7 +70,7 @@ function App() {
               </Grid>
               <Grid item xs sx={{ textAlign: 'center' }}>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  ToDoRist
+                  ToDoList
                 </Typography>
               </Grid>
               <Grid item xs="auto">
